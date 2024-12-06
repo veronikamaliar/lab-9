@@ -1,0 +1,38 @@
+{% extends "base.html" %} {% block title %}Головна{% endblock %} {% block
+content %}
+<div class="text-center">
+  <h1 class="text-4xl font-bold text-gray-800 mb-8">
+    Каталог музики та плейлисти
+  </h1>
+  <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+    <a
+      href="/tracks"
+      class="bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition"
+    >
+      <h2 class="text-xl font-semibold mb-2">Музичні треки</h2>
+      <p class="text-gray-600">Переглянути всі музичні треки</p>
+    </a>
+    <a
+      href="/playlists"
+      class="bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition"
+    >
+      <h2 class="text-xl font-semibold mb-2">Плейлисти</h2>
+      <p class="text-gray-600">Переглянути всі плейлисти</p>
+    </a>
+    <a
+      href="/users"
+      class="bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition"
+    >
+      <h2 class="text-xl font-semibold mb-2">Користувачі</h2>
+      <p class="text-gray-600">Переглянути всіх користувачів</p>
+    </a>
+    <a
+      href="/playlists_tracks"
+      class="bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition"
+    >
+      <h2 class="text-xl font-semibold mb-2">Плейлисти з треками</h2>
+      <p class="text-gray-600">Переглянути всі плейлисти з треками</p>
+    </a>
+  </div>
+</div>
+{% endblock %}

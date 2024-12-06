@@ -1,0 +1,51 @@
+{% extends "base.html" %} {% block title %}Плейлисти{% endblock %} {% block
+content %}
+<div class="bg-white p-6 rounded-lg shadow-md">
+  <div class="flex justify-between items-center mb-6">
+    <h1 class="text-2xl font-bold">Плейлисти</h1>
+    <a
+      href="/playlists/add"
+      class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600"
+    >
+      Додати плейлист
+    </a>
+  </div>
+
+  <div class="overflow-x-auto">
+    <table class="min-w-full">
+      <thead>
+        <tr class="bg-gray-50">
+          <th class="px-6 py-3 text-left">Назва плейлисту</th>
+          <th class="px-6 py-3 text-left">Опис</th>
+          <th class="px-6 py-3 text-left">Створено користувачем</th>
+          <th class="px-6 py-3 text-left">Дата створення</th>
+          <th class="px-6 py-3 text-left">Дії</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for playlist in playlists %}
+        <tr class="border-t">
+          <td class="px-6 py-4">{{ playlist.name }}</td>
+          <td class="px-6 py-4">{{ playlist.description }}</td>
+          <td class="px-6 py-4">{{ playlist.user_first_name }}</td>
+          <td class="px-6 py-4">{{ playlist.created_at }}</td>
+          <td class="px-6 py-4">
+            <a
+              href="/playlists/edit/{{ playlist._id }}"
+              class="text-blue-500 hover:text-blue-700"
+              >Редагувати</a
+            >
+            <a
+              href="/playlists/delete/{{ playlist._id }}"
+              class="text-red-500 hover:text-red-700"
+              onclick="return confirm('Ви впевнені?')"
+              >Видалити</a
+            >
+          </td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+</div>
+{% endblock %}

@@ -1,0 +1,51 @@
+{% extends "base.html" %} {% block title %}Користувачі{% endblock %} {% block
+content %}
+<div class="bg-white p-6 rounded-lg shadow-md">
+  <div class="flex justify-between items-center mb-6">
+    <h1 class="text-2xl font-bold">Користувачі</h1>
+    <a
+      href="/users/add"
+      class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600"
+    >
+      Додати користувача
+    </a>
+  </div>
+
+  <div class="overflow-x-auto">
+    <table class="min-w-full">
+      <thead>
+        <tr class="bg-gray-50">
+          <th class="px-6 py-3 text-left">Ім'я</th>
+          <th class="px-6 py-3 text-left">Прізвище</th>
+          <th class="px-6 py-3 text-left">Контакти</th>
+          <th class="px-6 py-3 text-left">Дії</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for user in users %}
+        <tr class="border-t">
+          <td class="px-6 py-4">{{ user.first_name }}</td>
+          <td class="px-6 py-4">{{ user.last_name }}</td>
+          <td class="px-6 py-4">{{ user.contact }}</td>
+          <td class="px-6 py-4">
+            <a
+              href="/users/edit/{{ user._id }}"
+              class="text-blue-500 hover:text-blue-700 mr-2"
+            >
+              Редагувати
+            </a>
+            <a
+              href="/users/delete/{{ user._id }}"
+              class="text-red-500 hover:text-red-700"
+              onclick="return confirm('Ви впевнені?')"
+            >
+              Видалити
+            </a>
+          </td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+</div>
+{% endblock %}

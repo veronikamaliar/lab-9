@@ -1,0 +1,77 @@
+{% extends "base.html" %}
+{% block title %}Редагувати трек у плейлисті{% endblock %}
+
+{% block content %}
+<div class="max-w-2xl mx-auto bg-white p-6 rounded-lg shadow-md">
+  <h1 class="text-2xl font-bold mb-6">Редагувати трек у плейлисті</h1>
+
+  <form method="POST" class="space-y-4">
+    <div>
+      <label class="block text-sm font-medium text-gray-700">Плейлист</label>
+      <select
+        name="playlist_id"
+        required
+        class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500"
+      >
+        {% for playlist in playlists %}
+        <option value="{{ playlist._id }}" {% if playlist._id == current_playlist._id %}selected{% endif %}>
+          {{ playlist.name }}
+        </option>
+        {% endfor %}
+      </select>
+    </div>
+
+    <div>
+      <label class="block text-sm font-medium text-gray-700">Трек</label>
+      <select
+        name="track_id"
+        required
+        class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500"
+      >
+        {% for track in music_tracks %}
+        <option value="{{ track._id }}" {% if track._id == current_track._id %}selected{% endif %}>
+          {{ track.title }} - {{ track.artist }}
+        </option>
+        {% endfor %}
+      </select>
+    </div>
+
+    <div>
+      <label class="block text-sm font-medium text-gray-700">Артист</label>
+      <input
+        type="text"
+        name="artist"
+        required
+        value="{{ current_track.artist }}"
+        class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500"
+      />
+    </div>
+
+    <div>
+      <label class="block text-sm font-medium text-gray-700">Дата додавання</label>
+      <input
+        type="date"
+        name="added_at"
+        required
+        value="{{ current_playlist_track.added_at }}"
+        class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500"
+      />
+    </div>
+
+    <div class="flex justify-end space-x-4">
+      <a
+        href="/playlists_tracks"
+        class="bg-gray-500 text-white px-4 py-2 rounded hover:bg-gray-600"
+      >
+        Скасувати
+      </a>
+      <button
+        type="submit"
+        class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600"
+      >
+        Зберегти зміни
+      </button>
+    </div>
+  </form>
+</div>
+{% endblock %}
